@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
+import query from 'Queries/fetchSongs';
 
 const SongCreate = (props) => {
   const [title, setTitle] = useState('');
@@ -9,9 +10,12 @@ const SongCreate = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     props.mutate({
-      variables: {
-        title: title
-      }
+      variables: { title: title },
+      // when inserting data, you may have to refetch data
+      refetchQueries: [{ 
+        query,
+       // variables: you can add variables here 
+      }]
     }).then(() => {
       setTitle('');
       props.history.push('/');
@@ -58,4 +62,5 @@ const mutation = gql`
     }
   }
 `;
-export default graphql(mutation)(SongCreate);
+export default graphql
+  graphql(mutation)(SongCreate);

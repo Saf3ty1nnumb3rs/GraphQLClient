@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -31,4 +32,10 @@ module.exports = {
       template: 'client/index.html'
     })
   ],
+  resolve: {
+    alias: {
+      Components: path.resolve(__dirname, 'client/components'),
+      Queries: path.resolve(__dirname, 'client/queries/')
+    }
+  }
 };
