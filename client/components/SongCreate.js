@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { Link } from 'react-router-dom';
 
 const SongCreate = (props) => {
   const [title, setTitle] = useState('');
@@ -11,13 +12,32 @@ const SongCreate = (props) => {
       variables: {
         title: title
       }
-    });
-    setTitle('')
+    }).then(() => {
+      setTitle('');
+      props.history.push('/');
+    })
+    
   }
 
   return (
     <div>
-      <h3>Creat A New Song</h3>
+      <div style={{ 
+        display: 'flex',
+        alignItems: 'center'
+        }}
+      >
+        <Link
+        to="/"
+        className="btn-floating btn-med raised blue left"
+        style={{
+          marginRight: '10px'
+        }}
+        >
+        <i className="material-icons">arrow_back</i>
+        </Link>
+        <h6>Back To List</h6> 
+      </div>
+      <h3>Create A New Song</h3>
       <form onSubmit={onSubmit}>
         <label>Song Title:</label>
         <input
