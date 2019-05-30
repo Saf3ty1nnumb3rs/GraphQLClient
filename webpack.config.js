@@ -18,12 +18,17 @@ module.exports = {
       {
         use: ['style-loader', 'css-loader'],
         test: /\.css$/
+      },
+      {
+        use: 'graphql-tag/loader',
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
       }
-    ]
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'client/index.html'
     })
-  ]
+  ],
 };
