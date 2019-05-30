@@ -7,7 +7,10 @@ import query from 'Queries/fetchSongs';
 class SongList extends Component {
 
   onSongDelete(id) {
-    this.props.mutate({ variables: { id }, refetchQueries: [{ query }] })
+    this.props.mutate({ variables: { id } })
+      .then(() => this.props.data.refetch());
+      // Since this query is from this component, refetch() is available in props
+      // Note the difference between SongCreate and SongList
   }
   renderSongs() {
     return this.props.data.songs.map(({ title, id }) => {
@@ -15,7 +18,7 @@ class SongList extends Component {
         <li key={id} className="collection-item">
           {title}
           <i
-            className="material-icons red right"
+            className="material-icons"
             onClick={() => this.onSongDelete(id)}
           >
             delete
@@ -34,6 +37,7 @@ class SongList extends Component {
         }
         {!data.loading &&
         <>
+          <h3>Song Selections:</h3>
           <ul className="collection" >
             {this.renderSongs()}
           </ul>

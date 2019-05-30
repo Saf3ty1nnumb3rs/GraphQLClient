@@ -6,6 +6,8 @@ import { HashRouter } from 'react-router-dom';
  
 import App from 'Components/App';
  
+import './style/style.css';
+
 const client = new ApolloClient({});
  
 ReactDOM.render(
