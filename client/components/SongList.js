@@ -38,7 +38,7 @@ class SongList extends Component {
         {!data.loading &&
         <>
           <h3>Song Selections:</h3>
-          <ul className="collection" >
+          <ul className="collection">
             {this.renderSongs()}
           </ul>
           <Link
