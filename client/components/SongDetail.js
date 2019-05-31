@@ -2,10 +2,10 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import query from 'Queries/fetchSong';
 
-const SongDetail = (props) => {
-  const { data } = props;
+const SongDetail = ({ data }) => {
+  const { song } = data;
 
-  const renderLyrics = () => data.song.lyrics.map(({content, id}) => {
+  const renderLyrics = () => song.lyrics.map(({content, id}) => {
     return (
       <li key={id} className="collection-item">
         {content}
@@ -19,7 +19,7 @@ const SongDetail = (props) => {
       {data.loading && <p>Loading...</p>}
       {!data.loading &&
       <>
-        <h5>{data.song.title}</h5>
+        <h5>{song.title}</h5>
         <ul className="collection">
           {renderLyrics()}
         </ul>

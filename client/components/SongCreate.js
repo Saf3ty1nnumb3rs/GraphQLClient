@@ -62,5 +62,5 @@ const mutation = gql`
     }
   }
 `;
-export default graphql
-  graphql(mutation)(SongCreate);
+export default graphql(mutation)(
+  graphql(query)(SongCreate));
