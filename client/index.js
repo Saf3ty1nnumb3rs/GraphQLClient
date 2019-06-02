@@ -8,7 +8,9 @@ import App from 'Components/App';
  
 import './style/style.css';
 
-const client = new ApolloClient({});
+const client = new ApolloClient({
+  dataIdFromObject: o => o.id
+});
  
 ReactDOM.render(
   <ApolloProvider client={client}>
