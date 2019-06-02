@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import query from 'Queries/fetchSong';
+import BackButton from 'Components/BackButton';
 
 const SongDetail = ({ data }) => {
   const { song } = data;
@@ -12,14 +13,13 @@ const SongDetail = ({ data }) => {
       </li>
     );
   });
-
+  if (!song) return <div>Loading...</div>;
   return (
     <div>
-      <h3>Song Detail</h3>
-      {data.loading && <p>Loading...</p>}
-      {!data.loading &&
+      <BackButton />
+      {song &&
       <>
-        <h5>{song.title}</h5>
+        <h4>{song.title}</h4>
         <ul className="collection">
           {renderLyrics()}
         </ul>

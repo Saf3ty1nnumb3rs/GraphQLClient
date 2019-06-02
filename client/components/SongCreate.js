@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Link } from 'react-router-dom';
+import BackButton from 'Components/BackButton';
 import query from 'Queries/fetchSongs';
 
 const SongCreate = (props) => {
@@ -25,22 +25,7 @@ const SongCreate = (props) => {
 
   return (
     <div>
-      <div style={{ 
-        display: 'flex',
-        alignItems: 'center'
-        }}
-      >
-        <Link
-        to="/"
-        className="btn-floating btn-med raised blue left"
-        style={{
-          marginRight: '10px'
-        }}
-        >
-        <i className="material-icons">arrow_back</i>
-        </Link>
-        <h6>Back To List</h6> 
-      </div>
+      <BackButton />
       <h3>Create A New Song</h3>
       <form onSubmit={onSubmit}>
         <label>Song Title:</label>
